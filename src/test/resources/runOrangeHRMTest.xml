@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="OrangeHRM">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="reportConfig.AllureTestListener" />
+	</listeners>
+
+
+	<test name="Run On FIREFOX">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.OrangeHRM.admin.Login" />
+			<class name="com.OrangeHRM.pim.AddEmployee" />
+		</classes>
+	</test>
+	
+<!--	<test name="Run On CHROME">-->
+<!--		<parameter name="browser" value="chrome" />-->
+<!--		<classes>-->
+<!--			<class name="com.OrangeHRM.admin.Login" />-->
+<!--			<class name="com.OrangeHRM.pim.AddEmployee" />-->
+<!--		</classes>-->
+<!--	</test>-->
+<!--	<test name="Run On EDGE">-->
+<!--		<parameter name="browser" value="edge" />-->
+<!--		<classes>-->
+<!--			<class name="com.OrangeHRM.admin.Login" />-->
+<!--			<class name="com.OrangeHRM.pim.AddEmployee" />-->
+<!--		</classes>-->
+<!--	</test>-->
+	<!-- <test name="Run On CHROME_HEADLESS">
+   <parameter name = "browser" value = "chrome_headless"/>
+   <classes>
+     <class name="com.OrangeHRM.admin.Login"/>
+     <class name="com.OrangeHRM.pim.AddEmployee"/>
+   </classes>
+   </test>
+
+    <test name="Run On EDGE_HEADLESS">
+   <parameter name = "browser" value = "edge_headless"/>
+   <classes>
+     <class name="com.OrangeHRM.admin.Login"/>
+     <class name="com.OrangeHRM.pim.AddEmployee"/>
+   </classes>
+     </test>
+
+   <test name="Run On FIREFOX_HEADLESS">
+   <parameter name = "browser" value = "firefox_headless"/>
+   <classes>
+     <class name="com.OrangeHRM.admin.Login"/>
+     <class name="com.OrangeHRM.pim.AddEmployee"/>
+   </classes>
+     </test> -->
+</suite> 

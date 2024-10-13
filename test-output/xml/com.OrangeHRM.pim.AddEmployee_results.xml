@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Run On FIREFOX"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="7,425">
+  <properties />
+  
+  
+            <testcase name="TC_01_Creat_New_Employee" time="7,425" classname="com.OrangeHRM.pim.AddEmployee" />
+      
+</testsuite>
