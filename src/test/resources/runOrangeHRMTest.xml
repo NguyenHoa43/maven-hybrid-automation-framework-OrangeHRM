@@ -15,20 +15,22 @@
 		</classes>
 	</test>
 	
-<!--	<test name="Run On CHROME">-->
-<!--		<parameter name="browser" value="chrome" />-->
-<!--		<classes>-->
-<!--			<class name="com.OrangeHRM.admin.Login" />-->
-<!--			<class name="com.OrangeHRM.pim.AddEmployee" />-->
-<!--		</classes>-->
-<!--	</test>-->
-<!--	<test name="Run On EDGE">-->
-<!--		<parameter name="browser" value="edge" />-->
-<!--		<classes>-->
-<!--			<class name="com.OrangeHRM.admin.Login" />-->
-<!--			<class name="com.OrangeHRM.pim.AddEmployee" />-->
-<!--		</classes>-->
-<!--	</test>-->
+	<test name="Run On CHROME">
+		<parameter name="browser" value="chrome" />
+			<classes>
+				<class name="com.OrangeHRM.admin.Login" />
+			<class name="com.OrangeHRM.pim.AddEmployee" />
+		</classes>
+	</test>
+	
+	<test name="Run On EDGE">
+		<parameter name="browser" value="edge" />
+		<classes>-->
+			<class name="com.OrangeHRM.admin.Login" />
+			<class name="com.OrangeHRM.pim.AddEmployee" />
+		</classes>
+	</test>
+	
 	<!-- <test name="Run On CHROME_HEADLESS">
    <parameter name = "browser" value = "chrome_headless"/>
    <classes>
