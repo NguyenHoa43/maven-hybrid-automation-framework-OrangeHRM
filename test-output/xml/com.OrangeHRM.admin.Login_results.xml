@@ -4,14 +4,14 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="10,130">
+           time="13,003">
   <properties />
   
   
-            <testcase name="TC_02_Login_Page_Not_Password" time="1,616" classname="com.OrangeHRM.admin.Login" />
-                <testcase name="TC_01_Login_Page_Not_User" time="1,153" classname="com.OrangeHRM.admin.Login" />
-                <testcase name="TC_05_Login_Page_Successfull" time="2,577" classname="com.OrangeHRM.admin.Login" />
-                <testcase name="TC_03_Login_Page_Wrong_User" time="2,235" classname="com.OrangeHRM.admin.Login" />
-                <testcase name="TC_04_Login_Page_Wrong_Password" time="2,549" classname="com.OrangeHRM.admin.Login" />
+            <testcase name="TC_01_Login_Page_Not_User" time="1,378" classname="com.OrangeHRM.admin.Login" />
+                <testcase name="TC_03_Login_Page_Wrong_User" time="2,861" classname="com.OrangeHRM.admin.Login" />
+                <testcase name="TC_05_Login_Page_Successfull" time="4,755" classname="com.OrangeHRM.admin.Login" />
+                <testcase name="TC_02_Login_Page_Not_Password" time="1,376" classname="com.OrangeHRM.admin.Login" />
+                <testcase name="TC_04_Login_Page_Wrong_Password" time="2,633" classname="com.OrangeHRM.admin.Login" />
       
 </testsuite>

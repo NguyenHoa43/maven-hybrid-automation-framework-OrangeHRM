@@ -2,17 +2,23 @@ package commons;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -25,9 +31,15 @@ import org.openqa.selenium.firefox.FirefoxDriverService;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.GeckoDriverService;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
+
+import com.github.javafaker.Address;
+import com.github.javafaker.Faker;
 
 
 
@@ -35,6 +47,7 @@ public class BaseTest {
 
 	private WebDriver driver;
 	protected final Log log;
+	private Platform platform;
 	
 	@BeforeSuite
 	public void initBeforeSuite() {
@@ -45,67 +58,18 @@ public class BaseTest {
 	}
 
 	
-	protected WebDriver getBrowserDriver(String browserName) {
+	protected WebDriver getBrowser(String browserName, String serverName) {
 		BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
+		
 		switch (browserList) {
-		case CHROME:
-			Map<String, Object> prefs = new HashMap<String, Object>();
-			prefs.put("profile.default_content_setting_values.notifications", 2);
-			prefs.put("credentials_enable_service", false);
-			prefs.put("profile.password_manager_enabled", false);
-			prefs.put("autofill.profile_enabled", false);
-			
-			prefs.put("profile.default_content_settings.popups", 0);
-			prefs.put("download.default_directory", GlobalConstants.DOWNLOAD_FILE);
-			
-			ChromeDriverService chromeService = new ChromeDriverService.Builder().withLogFile(new File(GlobalConstants.BROWSER_LOG + "chromeDriver.log")).build();
-			ChromeOptions chomeOptions = new ChromeOptions();
-			chomeOptions.addArguments("--disable-notifications");
-			chomeOptions.addArguments("--disable-geolocation");
-			chomeOptions.addArguments("--lang=vi");
-			/*code run inprivate - chạy ẩn danh */
-			//chomeOptions.addArguments("--incognito");
-			/*code chạy browser trên profile để tránh xác nhận capcha hoặc verify human*/
-			//chomeOptions.addArguments("--user-data-dir=C:/Users/Cko amo/AppData/Local/Google/Chrome/User Data/");
-			//chomeOptions.addArguments("--profile-directory=Profile 11");
-			chomeOptions.setExperimentalOption("prefs", prefs);
-			chomeOptions.setExperimentalOption("useAutomationExtension", false);
-			chomeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-			driver = new ChromeDriver(chromeService, chomeOptions);
+		case CHROME:			
+			driver = new ChromeDriver();
 			break;
-		case FIREFOX:
-			FirefoxOptions firefoxOption = new FirefoxOptions();
-			firefoxOption.addPreference("browser.download.folderList", 2);
-			firefoxOption.addPreference("browser.download.dir", GlobalConstants.DOWNLOAD_FILE);
-			firefoxOption.addPreference("browser.download.useDownloadDir", true);
-			firefoxOption.addPreference("browser.helperApps.neverAsk.saveToDisk","multipart/x-zip, application/zip, application/x-zip-compressed, " + "application/x-compressed,application/msword,application/csv," + "text/csv,image/pnj, image/jpeg, application/pdf, text/html, " + "text/plain, application/excel, application/vnd.ms-excel, " + "application/x-excel, application/x-msexcel, application/octet-stream");
-			firefoxOption.addPreference("pdfjs.disabled", true);
-			/*run inprivate - chạy ẩn danh */
-			//firefoxOption.addArguments("-private");
-			
-			FirefoxDriverService firefoxservice = new GeckoDriverService.Builder().withLogFile(new File(GlobalConstants.BROWSER_LOG + "FirefoxDriver.log")).build();
-			driver = new FirefoxDriver(firefoxservice, firefoxOption);
+		case FIREFOX:			
+			driver = new FirefoxDriver();
 			break;
 		case EDGE:
-			Map<String, Object> prefss = new HashMap<String, Object>();
-			prefss.put("profile.default_content_setting_values.notifications", 2);
-			prefss.put("credentials_enable_service", false);
-			prefss.put("profile.password_manager_enabled", false);
-			prefss.put("autofill.profile_enabled", false);
-			
-			
-			
-			EdgeDriverService edgeservice = new EdgeDriverService.Builder().withLogFile(new File(GlobalConstants.BROWSER_LOG + "edgeDriver.log")).build();
-			EdgeOptions edgeOption = new EdgeOptions();
-			edgeOption.addArguments("--disable-notifications");
-			edgeOption.addArguments("--disable-geolocation");
-			edgeOption.addArguments("--lang=vi");
-			/*run inprivate - chạy ẩn danh */
-			//edgeOption.addArguments("--inprivate");
-			edgeOption.setExperimentalOption("useAutomationExtension", false);
-			edgeOption.setExperimentalOption("prefs", prefss);
-			edgeOption.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-			driver = new EdgeDriver(edgeservice, edgeOption);
+			driver = new EdgeDriver();
 			break;
 		case CHROME_HEADLESS:
 			ChromeOptions chOption = new ChromeOptions();
@@ -129,8 +93,76 @@ public class BaseTest {
 			throw new RuntimeException("Browser name is not valid");
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIME_OUT));
-		driver.get(GlobalConstants.PAGE_URL);
+		System.out.println("Server Name: " + serverName);
+		System.out.println("Server url: " + getUrlByServerName(serverName));
+		driver.get(getUrlByServerName(serverName));
 		return driver;
+	}	
+
+	//Selenium Grid
+	protected WebDriver getBrowserDriver(String browserName, String url, String osName, String ipAddress, String portNumber) {
+		BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
+		Capabilities capability = null;
+
+		if (osName.toLowerCase().contains("windows")) {
+			platform = Platform.WINDOWS;
+		} else {
+			platform = Platform.MAC;
+		}
+
+		switch (browserList) {
+		case FIREFOX:
+			FirefoxOptions fOptions = new FirefoxOptions();
+			fOptions.setCapability(CapabilityType.PLATFORM_NAME, platform);
+			capability = fOptions;
+			break;
+		case CHROME:
+			ChromeOptions cOptions = new ChromeOptions();
+			cOptions.setCapability(CapabilityType.PLATFORM_NAME, platform);
+			capability = cOptions;
+			break;
+		case EDGE:
+			EdgeOptions eOptions = new EdgeOptions();
+			eOptions.setCapability(CapabilityType.PLATFORM_NAME, platform);
+			capability = eOptions;
+			break;
+		case SAFARI:
+			SafariOptions sOptions = new SafariOptions();
+			sOptions.setCapability(CapabilityType.PLATFORM_NAME, platform);
+			capability = sOptions;
+			break;
+		default:
+			throw new RuntimeException("Browser is not valid!");
+		}
+
+		try {
+			driver = new RemoteWebDriver(new URL(String.format("http://%s:%s/", ipAddress, portNumber)), capability);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		driver.manage().window().maximize();
+		driver.get(url);
+		return driver;
+	}
+	
+	private String getUrlByServerName(String serverName) {
+		EnvironmentList enviromentlist = EnvironmentList.valueOf(serverName.toUpperCase());
+		
+		switch (enviromentlist) {
+		case DEV:
+			serverName = "http://localhost/orangehrm5/web/index.php/auth/login";
+			break;
+			
+		case TEST:
+			serverName = "http://localhost/orangehrm5/web/index.php/auth/login";
+			break;
+			
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + enviromentlist);
+		}
+		return serverName;
 	}
 
 	protected WebDriver getBrowserDriver(String browserName, String appURL) {
@@ -176,6 +208,32 @@ public class BaseTest {
 	protected int fadeNumber() {
 		Random rand = new Random();
 		return rand.nextInt(99999);
+	}
+	
+	public Address getFaker() {
+		Faker faker = new Faker(new Locale("en-US"));
+		return faker.address();
+	}
+	
+	public static int getRandomNumber() {
+		int uLimit = 999;
+		int lLimit = 100;
+		Random rand = new Random();
+		return lLimit + rand.nextInt(uLimit - lLimit);
+	}
+
+	public static int getRandomNumber(int minimum, int maximum) {
+		Random rand = new Random();
+		return minimum + rand.nextInt(maximum - minimum);
+	}
+
+	public static String getRandomEmail() {
+		return "automation" + getRandomNumberByDateTime() + "@live.com";
+	}
+
+	// Get random number by date time minute second (no duplicate)
+	public static long getRandomNumberByDateTime() {
+		return Calendar.getInstance().getTimeInMillis() % 100000;
 	}
 	
 	public WebDriver getDriverInstance() {

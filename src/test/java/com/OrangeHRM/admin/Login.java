@@ -1,10 +1,15 @@
 package com.OrangeHRM.admin;
 
+import java.util.Locale;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import com.github.javafaker.Faker;
 
 import commons.BaseTest;
 import commons.GlobalConstants;
@@ -20,13 +25,13 @@ public class Login extends BaseTest{
 	private String emailAddress, userName, passWord;
 	private AdminLoginPageObject loginPage;
 	
-	@Parameters("browser")
+	@Parameters({"browser","server"})
 	@BeforeClass
-	public void beforeClass(String browserName) {
-		driver = getBrowserDriver(browserName);
+	public void beforeClass(String browserName, String serverName) {
+		driver = getBrowser(browserName, serverName);
 		loginPage = PageGeneratorManager.getAdminLoginPage(driver);
 		userName = "automationdhoa";
-		passWord = "Hoabeo@43#";
+		passWord = "Hoabeo43#";
 		emailAddress = "afc" + fadeNumber() + "@gmail.com";
 		
 	}

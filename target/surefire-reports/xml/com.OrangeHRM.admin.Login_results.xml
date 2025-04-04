@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Run On CHROME"
+<testsuite name="Run On FIREFOX"
            tests="5"
            failures="0"
            errors="0"
            skipped="0"
-           time="7,604">
+           time="9,955">
   <properties />
   
   
-            <testcase name="TC_04_Login_Page_Wrong_Password" time="2,278" classname="com.OrangeHRM.admin.Login" />
-                <testcase name="TC_05_Login_Page_Successfull" time="0,974" classname="com.OrangeHRM.admin.Login" />
-                <testcase name="TC_01_Login_Page_Not_User" time="1,259" classname="com.OrangeHRM.admin.Login" />
-                <testcase name="TC_02_Login_Page_Not_Password" time="1,079" classname="com.OrangeHRM.admin.Login" />
-                <testcase name="TC_03_Login_Page_Wrong_User" time="2,014" classname="com.OrangeHRM.admin.Login" />
+            <testcase name="TC_05_Login_Page_Successfull" time="2,491" classname="com.OrangeHRM.admin.Login" />
+                <testcase name="TC_04_Login_Page_Wrong_Password" time="2,296" classname="com.OrangeHRM.admin.Login" />
+                <testcase name="TC_03_Login_Page_Wrong_User" time="2,042" classname="com.OrangeHRM.admin.Login" />
+                <testcase name="TC_01_Login_Page_Not_User" time="1,872" classname="com.OrangeHRM.admin.Login" />
+                <testcase name="TC_02_Login_Page_Not_Password" time="1,254" classname="com.OrangeHRM.admin.Login" />
       
 </testsuite>

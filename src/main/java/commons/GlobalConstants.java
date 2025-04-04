@@ -21,7 +21,7 @@ public class GlobalConstants {
 	public static final String REPORTNG_SCREENSHOT = PROJECT_PATH + File.separator + "ReportNGImages" + File.separator;
 	
 	public static final String REPORTNG_SCREENSHOT_EXTENTV5 = PROJECT_PATH + File.separator + "extentV5" + File.separator;
-
+	public static final String RESOURCE_PATH = PROJECT_PATH + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator;
 	public static final String DB_DEV_URL = "192.168.1.15:9860";
 	public static final String USER_NAME = "automationdhoa";
 	public static final String PASS_WORD = "Hoabeo@43#";

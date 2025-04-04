@@ -25,10 +25,10 @@ public class AddEmployee extends BaseTest{
 	private DashboardOrangeHRMPageObject dashBoardPage;
 	
 
-	@Parameters("browser")
+	@Parameters({"browser", "server"})
 	@BeforeClass
-	public void beforeClass(String browserName) {
-		driver = getBrowserDriver(browserName);
+	public void beforeClass(String browserName, String serverName) {
+		driver = getBrowser(browserName, serverName);
 		loginPage = PageGeneratorManager.getAdminLoginPage(driver);
 		pimPage = PageGeneratorManager.getAdminPimPage(driver);
 		dashBoardPage = PageGeneratorManager.getAdminDashboardPage(driver);
@@ -68,6 +68,8 @@ public class AddEmployee extends BaseTest{
 		pimPage.clickToButtonSave();
 		
 	}
+	
+
 	
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {

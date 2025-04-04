@@ -1,13 +1,16 @@
+commons\practicewritecode.class
 reportConfig\AllureTestListener.class
 reportConfig\ReportNGListener.class
 commons\BaseTest.class
 commons\TestNGAppender.class
+commons\practicewritecode$2.class
 pageObjects\OrangeHRM\admin\AdminLoginPageObject.class
 commons\BagePageFactory.class
 commons\BrowserList.class
 commons\BasePage$2.class
 commons\VerificationFailures.class
 reportConfig\ExtentTestListenerV5.class
+commons\practicewritecode$1.class
 reportConfig\ExtentManagerV5.class
 pageObjects\OrangeHRM\admin\PimOrangeHRMPageObject.class
 commons\GlobalConstants.class
@@ -17,6 +20,7 @@ META-INF\org\apache\logging\log4j\core\config\plugins\Log4j2Plugins.dat
 commons\MethodListener.class
 pageUIs\OrangeHRM\admin\AdminDashboardPageUIs.class
 pageUIs\OrangeHRM\admin\AdminOrangeHRMPageUIs.class
+commons\EnvironmentList.class
 pageUIs\OrangeHRM\admin\AdminPimPageUIs.class
 commons\BasePage.class
 commons\BaseTest$1.class
