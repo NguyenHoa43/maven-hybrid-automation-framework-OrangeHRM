@@ -146,6 +146,21 @@
           <div class="suite-OrangeHRM-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
+              <span class="class-name">com.OrangeHRM.pim.AddEmployee</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_01_Creat_New_Employee">
+                  </a> <!-- TC_01_Creat_New_Employee -->
+                  <span class="method-name">TC_01_Creat_New_Employee</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-OrangeHRM-class-passed -->
+          <div class="suite-OrangeHRM-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
               <span class="class-name">com.OrangeHRM.admin.Login</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -186,21 +201,6 @@
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-OrangeHRM-class-passed -->
-          <div class="suite-OrangeHRM-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.OrangeHRM.pim.AddEmployee</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="TC_01_Creat_New_Employee">
-                  </a> <!-- TC_01_Creat_New_Employee -->
-                  <span class="method-name">TC_01_Creat_New_Employee</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-OrangeHRM-class-passed -->
         </div> <!-- panel OrangeHRM -->
         <div panel-name="test-xml-OrangeHRM" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -211,14 +211,15 @@
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite thread-count=&quot;1&quot; parallel=&quot;tests&quot; name=&quot;OrangeHRM&quot;&gt;
-  &lt;parameter name=&quot;server&quot; value=&quot;dev&quot;/&gt;
+  &lt;parameter name=&quot;envName&quot; value=&quot;local&quot;/&gt;
+  &lt;parameter name=&quot;browser&quot; value=&quot;firefox&quot;/&gt;
+  &lt;parameter name=&quot;serverName&quot; value=&quot;dev&quot;/&gt;
   &lt;listeners&gt;
     &lt;listener class-name=&quot;org.uncommons.reportng.HTMLReporter&quot;/&gt;
     &lt;listener class-name=&quot;org.uncommons.reportng.JUnitXMLReporter&quot;/&gt;
     &lt;listener class-name=&quot;reportConfig.AllureTestListener&quot;/&gt;
   &lt;/listeners&gt;
   &lt;test thread-count=&quot;1&quot; parallel=&quot;tests&quot; name=&quot;Run On FIREFOX&quot;&gt;
-    &lt;parameter name=&quot;browser&quot; value=&quot;firefox&quot;/&gt;
     &lt;classes&gt;
       &lt;class name=&quot;com.OrangeHRM.admin.Login&quot;/&gt;
       &lt;class name=&quot;com.OrangeHRM.pim.AddEmployee&quot;/&gt;
@@ -265,32 +266,32 @@ data.addRows(6);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'TC_01_Creat_New_Employee')
 data.setCell(0, 2, 'com.OrangeHRM.pim.AddEmployee')
-data.setCell(0, 3, 7257);
+data.setCell(0, 3, 7346);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'TC_05_Login_Page_Successfull')
 data.setCell(1, 2, 'com.OrangeHRM.admin.Login')
-data.setCell(1, 3, 4755);
+data.setCell(1, 3, 2421);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'TC_03_Login_Page_Wrong_User')
+data.setCell(2, 1, 'TC_04_Login_Page_Wrong_Password')
 data.setCell(2, 2, 'com.OrangeHRM.admin.Login')
-data.setCell(2, 3, 2861);
+data.setCell(2, 3, 2333);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'TC_04_Login_Page_Wrong_Password')
+data.setCell(3, 1, 'TC_03_Login_Page_Wrong_User')
 data.setCell(3, 2, 'com.OrangeHRM.admin.Login')
-data.setCell(3, 3, 2633);
+data.setCell(3, 3, 2104);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'TC_01_Login_Page_Not_User')
+data.setCell(4, 1, 'TC_02_Login_Page_Not_Password')
 data.setCell(4, 2, 'com.OrangeHRM.admin.Login')
-data.setCell(4, 3, 1378);
+data.setCell(4, 3, 1353);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'TC_02_Login_Page_Not_Password')
+data.setCell(5, 1, 'TC_01_Login_Page_Not_User')
 data.setCell(5, 2, 'com.OrangeHRM.admin.Login')
-data.setCell(5, 3, 1376);
+data.setCell(5, 3, 1097);
 window.suiteTableData['OrangeHRM']= { tableData: data, tableDiv: 'times-div-OrangeHRM'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 45 seconds</span>
+              <span class="suite-total-time">Total running time: 38 seconds</span>
               <div id="times-div-OrangeHRM">
               </div> <!-- times-div-OrangeHRM -->
             </div> <!-- times-div -->
@@ -329,47 +330,47 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-class before">
-                <span class="method-name">beforeClass(firefox, dev)</span>
-                <span class="method-start">187 ms</span>
+                <span class="method-name">beforeClass(local, dev, firefox, localhost, 4444, windows, 10, local)</span>
+                <span class="method-start">120 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">TC_01_Login_Page_Not_User</span>
-                <span class="method-start">7790 ms</span>
+                <span class="method-start">6261 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">TC_02_Login_Page_Not_Password</span>
-                <span class="method-start">9345 ms</span>
+                <span class="method-start">7497 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">TC_03_Login_Page_Wrong_User</span>
-                <span class="method-start">10732 ms</span>
+                <span class="method-start">8859 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">TC_04_Login_Page_Wrong_Password</span>
-                <span class="method-start">13597 ms</span>
+                <span class="method-start">10971 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">TC_05_Login_Page_Successfull</span>
-                <span class="method-start">16236 ms</span>
+                <span class="method-start">13309 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">afterClass</span>
-                <span class="method-start">20995 ms</span>
+                <span class="method-start">15735 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.OrangeHRM.pim.AddEmployee</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">beforeClass(firefox, dev)</span>
-                <span class="method-start">22198 ms</span>
+                <span class="method-name">beforeClass(local, dev, firefox, localhost, 4444, windows, 10, local)</span>
+                <span class="method-start">16917 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">TC_01_Creat_New_Employee</span>
-                <span class="method-start">37367 ms</span>
+                <span class="method-start">29921 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">afterClass</span>
-                <span class="method-start">44626 ms</span>
+                <span class="method-start">37269 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

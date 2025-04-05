@@ -28,5 +28,17 @@ public class GlobalConstants {
 	public static final long SHORT_TIMEOUT = 5;
 	public static final long LONG_TIME_OUT = 100;
 	public static final long RETRY_TEST_FAIL = 3;
+	
+	
+	// run on loud BrowserStack.com
+	public static final String BROWSER_USERNAME = "";
+	public static final String BROWSER_AUTOMATE_KEY = "";
+	public static final String BROWSER_STACK_URL = "https://" + BROWSER_USERNAME + ":" + BROWSER_AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+	
+	// run on loud SauceLab
+	public static final String SAUCE_USERNAME = "";
+	public static final String SAUCE_AUTOMATE_KEY = "";
+	public static final String SAUCE_URL = "https://" + SAUCE_USERNAME + " : " + SAUCE_AUTOMATE_KEY + "@ondemand.eu-central-1.saucelabs.com:443/wd/hub";
+	
 
 }

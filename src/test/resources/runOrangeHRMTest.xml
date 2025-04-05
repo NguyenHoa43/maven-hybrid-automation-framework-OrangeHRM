@@ -6,9 +6,13 @@
 		<listener class-name="reportConfig.AllureTestListener" />
 	</listeners>
 
-	<parameter name="server" value="dev"/>
+	<parameter name="envName" value="local"/>
+	<parameter name="serverName" value="dev"/>
+	<parameter name="browser" value="firefox"/>
 	<test name="Run On FIREFOX">
-		<parameter name="browser" value="firefox" />
+	
+	
+		<!-- <parameter name="browser" value="firefox" />-->
 		<classes>
 			<class name="com.OrangeHRM.admin.Login" />
 			<class name="com.OrangeHRM.pim.AddEmployee" />

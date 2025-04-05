@@ -3,6 +3,7 @@ package com.OrangeHRM.pim;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -25,10 +26,10 @@ public class AddEmployee extends BaseTest{
 	private DashboardOrangeHRMPageObject dashBoardPage;
 	
 
-	@Parameters({"browser", "server"})
+	@Parameters({"envName","serverName","browser","ipAdress","portNumber", "osName","osVersion","browserVersion"})
 	@BeforeClass
-	public void beforeClass(String browserName, String serverName) {
-		driver = getBrowser(browserName, serverName);
+	public void beforeClass(@Optional("local") String envName, @Optional("dev") String serverName,@Optional("firefox") String browserName,@Optional("localhost") String ipAddress,@Optional("4444") String portNumber,@Optional("windows") String osName,@Optional("10") String osVersion,@Optional("local") String browserVersion) {
+		driver = getBrowserDriver(browserName, envName, serverName, osName, ipAddress, portNumber, browserVersion, osVersion);
 		loginPage = PageGeneratorManager.getAdminLoginPage(driver);
 		pimPage = PageGeneratorManager.getAdminPimPage(driver);
 		dashBoardPage = PageGeneratorManager.getAdminDashboardPage(driver);

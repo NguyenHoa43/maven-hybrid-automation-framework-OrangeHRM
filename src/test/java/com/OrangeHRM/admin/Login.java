@@ -22,13 +22,13 @@ import pageObjects.OrangeHRM.admin.AdminLoginPageObject;
 public class Login extends BaseTest{
 	
 	private WebDriver driver;
-	private String emailAddress, userName, passWord;
+	private String emailAddress, userName, passWord, browserName, appURL, envName, serverName, osName, ipAddress, portNumber, browserVersion, osVersion;
 	private AdminLoginPageObject loginPage;
 	
-	@Parameters({"browser","server"})
+	@Parameters({"envName","serverName","browser","ipAdress","portNumber", "osName","osVersion","browserVersion"})
 	@BeforeClass
-	public void beforeClass(String browserName, String serverName) {
-		driver = getBrowser(browserName, serverName);
+	public void beforeClass(@Optional("local") String envName, @Optional("dev") String serverName,@Optional("firefox") String browserName,@Optional("localhost") String ipAddress,@Optional("4444") String portNumber,@Optional("windows") String osName,@Optional("10") String osVersion,@Optional("local") String browserVersion) {
+		driver = getBrowserDriver(browserName, envName, serverName, osName, ipAddress, portNumber, browserVersion, osVersion);
 		loginPage = PageGeneratorManager.getAdminLoginPage(driver);
 		userName = "automationdhoa";
 		passWord = "Hoabeo43#";
