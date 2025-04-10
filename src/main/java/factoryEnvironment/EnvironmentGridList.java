@@ -1,5 +1,5 @@
 package factoryEnvironment;
 
 public enum EnvironmentGridList {
-	SERVER, LOCAL, GRID, BROSERSTACK, SAUCELAP;
+	SERVER, LOCAL, GRID, BROWSERSTACK, SAUCELAP;
 }

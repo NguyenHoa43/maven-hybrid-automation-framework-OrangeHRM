@@ -27,7 +27,7 @@ public class Login extends BaseTest{
 	
 	@Parameters({"envName","serverName","browser","ipAdress","portNumber", "osName","osVersion","browserVersion"})
 	@BeforeClass
-	public void beforeClass(@Optional("local") String envName, @Optional("dev") String serverName,@Optional("firefox") String browserName,@Optional("localhost") String ipAddress,@Optional("4444") String portNumber,@Optional("windows") String osName,@Optional("10") String osVersion,@Optional("local") String browserVersion) {
+	public void beforeClass(@Optional("local") String envName, @Optional("dev") String serverName, String browserName,@Optional("localhost") String ipAddress,@Optional("4444") String portNumber,@Optional("windows") String osName,@Optional("10") String osVersion,@Optional("local") String browserVersion) {
 		driver = getBrowserDriver(browserName, envName, serverName, osName, ipAddress, portNumber, browserVersion, osVersion);
 		loginPage = PageGeneratorManager.getAdminLoginPage(driver);
 		userName = "automationdhoa";

@@ -7,27 +7,28 @@
 	</listeners>
 
 	<parameter name="envName" value="local"/>
-	<parameter name="serverName" value="dev"/>
-	<parameter name="browser" value="firefox"/>
+	
+	
+	
 	<test name="Run On FIREFOX">
-	
-	
-		<!-- <parameter name="browser" value="firefox" />-->
+		<parameter name="serverName" value="dev"/>
+		<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.OrangeHRM.admin.Login" />
 			<class name="com.OrangeHRM.pim.AddEmployee" />
 		</classes>
 	</test>
 	
-	<!-- <test name="Run On CHROME">
+	 <test name="Run On CHROME">
+	 	<parameter name="serverName" value="test"/>
 		<parameter name="browser" value="chrome" />
 			<classes>
 				<class name="com.OrangeHRM.admin.Login" />
-			<class name="com.OrangeHRM.pim.AddEmployee" />
+				<class name="com.OrangeHRM.pim.AddEmployee" />
 		</classes>
 	</test>
 	
-	<test name="Run On EDGE">
+	<!--<test name="Run On EDGE">
 		<parameter name="browser" value="edge" />
 		<classes>
 			<class name="com.OrangeHRM.admin.Login" />

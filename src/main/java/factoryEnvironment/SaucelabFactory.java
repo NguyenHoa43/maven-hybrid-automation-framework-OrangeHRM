@@ -16,20 +16,19 @@ public class SaucelabFactory {
 	private WebDriver driver;
 	private String browserName;
 	private String osName;
-	private String browserVersion;
+
 	
-	public SaucelabFactory(String browserName, String osName, String browserVersion) {
+	public SaucelabFactory(String browserName, String osName) {
 		this.browserName = browserName;
 		this.osName = osName;
-		this.browserVersion = browserVersion;
 	}
 
 	public WebDriver createDriver() {
 		DesiredCapabilities capability = new DesiredCapabilities();
 		capability.setCapability("platformName", osName);
 		capability.setCapability("browserName",browserName);
-		capability.setCapability("browserVersion", browserVersion);
-		capability.setCapability("name", "Run on" + osName + " | " + browserName + " | " + browserVersion);
+		capability.setCapability("browserVersion", "latest");
+		capability.setCapability("name", "Run on" + osName + " | " + browserName);
 		
 		Map<String, Object> sauceOptions = new HashMap<>();
 		if (osName.contains("Windows")) {

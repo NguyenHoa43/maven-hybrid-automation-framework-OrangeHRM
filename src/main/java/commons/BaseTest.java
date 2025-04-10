@@ -64,49 +64,7 @@ public class BaseTest {
 	}
 	protected BaseTest() {
 		log = LogFactory.getLog(getClass());
-	}
-
-	
-//	protected WebDriver getBrowser(String browserName, String serverName) {
-//		BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
-//		
-//		switch (browserList) {
-//		case CHROME:			
-//			driver = new ChromeDriver();
-//			break;
-//		case FIREFOX:			
-//			driver = new FirefoxDriver();
-//			break;
-//		case EDGE:
-//			driver = new EdgeDriver();
-//			break;
-//		case CHROME_HEADLESS:
-//			ChromeOptions chOption = new ChromeOptions();
-//			chOption.addArguments("--headless");
-//			chOption.addArguments("window-size=1920x1080");
-//			driver = new ChromeDriver(chOption);
-//			break;
-//		case EDGE_HEADLESS:
-//			EdgeOptions egOption = new EdgeOptions();
-//			egOption.addArguments("--headless");
-//			egOption.addArguments("window-size=1920x1080");
-//			driver = new EdgeDriver(egOption);
-//			break;
-//		case FIREFOX_HEADLESS:
-//			FirefoxOptions ffOptions = new FirefoxOptions();
-//			ffOptions.addArguments("--headless");
-//			ffOptions.addArguments("window-size=1920x1080");
-//			driver = new FirefoxDriver(ffOptions);
-//			break;
-//		default:
-//			throw new RuntimeException("Browser name is not valid");
-//		}
-//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIME_OUT));
-//		System.out.println("Server Name: " + serverName);
-//		System.out.println("Server url: " + getUrlByServerName(serverName));
-//		driver.get(getUrlByServerName(serverName));
-//		return driver;
-//	}	
+	}	
 
 	private String getUrlByServerName(String serverName) {
 		EnvironmentList enviromentlist = EnvironmentList.valueOf(serverName.toUpperCase());
@@ -128,20 +86,20 @@ public class BaseTest {
 
 	protected WebDriver getBrowserDriver(String browserName, String envName, String serverName, String osName, String ipAddress, String portNumber, String browserVersion,String osVersion) {
 		
-		//EnvironmentGridList environment = EnvironmentGridList.valueOf(browserName.toUpperCase());
+		EnvironmentGridList environment = EnvironmentGridList.valueOf(envName.toUpperCase());
 		
-		switch (envName) {
-		case "local": 
+		switch (environment) {
+		case LOCAL: 
 			driver = new LocalFactory(browserName).createDriver();			
 		break;
-		case "grid":
+		case GRID:
 			driver = new GridFactory(browserName, ipAddress, portNumber).createDriver();
 		break;
-		case "browserStack":
-			driver =  new BrowserStackFactory(browserName, osName, portNumber).createDriver();
+		case BROWSERSTACK:
+			driver =  new BrowserStackFactory(browserName, osName, osVersion).createDriver();
 		break;
-		case "saucelap":
-			driver = new SaucelabFactory(browserName, osName, browserVersion).createDriver();
+		case SAUCELAP:
+			driver = new SaucelabFactory(browserName, osName).createDriver();
 		break;
 		default:
 			driver = new LocalFactory(browserName).createDriver();			
@@ -150,6 +108,8 @@ public class BaseTest {
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIME_OUT));
 		driver.manage().window().maximize();
+		System.out.println("Server Name: " + serverName);
+		System.out.println("Server url: " + getUrlByServerName(serverName));
 		driver.get(getUrlByServerName(serverName));
 		return driver;
 	}
@@ -188,7 +148,7 @@ public class BaseTest {
 	public WebDriver getDriverInstance() {
 		return this.driver;
 	}
-	
+		
 	protected boolean verifyTrue(boolean condition) {
 		boolean status = true;
 		try {
@@ -272,7 +232,7 @@ public class BaseTest {
 				browserDriverName = "safaridriver";
 			}
 
-			if (osName.contains("window")) {
+			if (osName.contains("windows")) {
 				cmd = "taskkill /F /FI \"IMAGENAME eq " + browserDriverName + "*\"";
 			} else {
 				cmd = "pkill " + browserDriverName;
