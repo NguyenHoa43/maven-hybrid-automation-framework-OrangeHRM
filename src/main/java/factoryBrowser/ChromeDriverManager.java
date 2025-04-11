@@ -46,7 +46,7 @@ public class ChromeDriverManager implements BrowserFactory{
 		options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 //		// chạy trên trình duyệt ẩn danh - khi cần chạy sẽ mở còn không thì không sử dụng
 //		// options.addArguments("--incognito");
-//
+
 		options.setExperimentalOption("prefs", prefs);
 		System.setProperty("webdriver.chrome.args", "--disable-logging");
 //		System.setProperty("webdriver.chrome.silentOutput", "true");
