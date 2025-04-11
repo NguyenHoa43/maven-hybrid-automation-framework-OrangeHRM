@@ -37,7 +37,7 @@ public class ChromeDriverManager implements BrowserFactory{
 		options.addArguments("--disable-notifications");
 		options.addArguments("--disable-geolocation");
 		// thay đổi ngôn ngữ browser sang tiếng việt
-//		options.addArguments("--lang=vi");
+		options.addArguments("--lang=vi");
 		// không cho sử dụng các extension
 		options.setExperimentalOption("useAutomationExtension", false);
 //		// chạy trên 1 mục được chỉ định trên trình duyệt
