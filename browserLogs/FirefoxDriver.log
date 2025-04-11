@@ -1,23 +1,28 @@
-1730888004755	geckodriver	INFO	Listening on 127.0.0.1:43610
-1730888004929	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "9285" "--remote- ... ocalhost:9285/,http://[::1]:9285/" "-no-remote" "-profile" "C:\\Users\\CKOAMO~1\\AppData\\Local\\Temp\\rust_mozprofileKdTngZ"
+1744362195172	geckodriver	INFO	Listening on 127.0.0.1:33969
+1744362195207	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "26158" "--remote ... alhost:26158/,http://[::1]:26158/" "-no-remote" "-profile" "C:\\Users\\CKOAMO~1\\AppData\\Local\\Temp\\rust_mozprofiletTvfIg"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
 Dynamically enable window occlusion 0
-1730888006106	Marionette	INFO	Marionette enabled
-1730888006710	Marionette	INFO	Listening on port 53198
-WebDriver BiDi listening on ws://127.0.0.1:9285
-Read port: 53198
-1730888007242	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-DevTools listening on ws://127.0.0.1:9285/devtools/browser/966be8f8-ec64-4098-8f87-67b126bbc6d3
+1744362195644	Marionette	INFO	Marionette enabled
+1744362196042	Marionette	INFO	Listening on port 51110
+WebDriver BiDi listening on ws://127.0.0.1:26158
+Read port: 51110
+1744362196269	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:26158/devtools/browser/b5e08748-4ac3-41fc-a64f-14bc9cbc26ca
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost."
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost."
-1730888044429	RemoteAgent	INFO	Perform WebSocket upgrade for incoming connection from 127.0.0.1:53274
-1730888044438	CDP	WARN	Support for the Chrome DevTools Protocol (CDP) in Firefox will be deprecated after Firefox 128 (ESR) and will be removed in a later release. CDP users should consider migrating to WebDriver BiDi. See https://bugzilla.mozilla.org/show_bug.cgi?id=1872254
-1730888044438	CDP	WARN	Invalid browser preferences for CDP. Set "fission.webContentIsolationStrategy"to 0 and "fission.bfcacheInParent" to false before Firefox starts.
-1730888044553	Marionette	INFO	Stopped listening on port 53198
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: resource://gre/actors/FormHandlerChild.sys.mjs, line 103: InvalidStateError: JSWindowActorChild.document getter: Cannot access property 'document' after actor 'FormHandler' has been destroyed
+console.warn: FormAutofillSection: isRecordCreatable: Country not supported: undefined
+1744362215478	RemoteAgent	INFO	Perform WebSocket upgrade for incoming connection from 127.0.0.1:51166
+1744362215482	CDP	WARN	Support for the Chrome DevTools Protocol (CDP) in Firefox will be deprecated after Firefox 128 (ESR) and will be removed in a later release. CDP users should consider migrating to WebDriver BiDi. See https://bugzilla.mozilla.org/show_bug.cgi?id=1872254
+1744362215482	CDP	WARN	Invalid browser preferences for CDP. Set "fission.webContentIsolationStrategy"to 0 and "fission.bfcacheInParent" to false before Firefox starts.
+1744362215487	Marionette	INFO	Stopped listening on port 51110
 Dynamically enable window occlusion 1
-console.error: (new NetworkError("Network error: TypeError: NetworkError: Network request failed", "resource://services-settings/RemoteSettingsClient.sys.mjs", 107))
-console.warn: services.settings: blocklists/gfx sync interrupted by shutdown
-console.warn: services.settings: main/devtools-compatibility-browsers sync interrupted by shutdown
-console.warn: services.settings: main/normandy-recipes-capabilities sync interrupted by shutdown
-console.error: (new AbortError("IndexedDB: main/nimbus-desktop-experiments getLastModified() IndexedDB:  execute() A request was aborted, for example through a call to IDBTransaction.abort.", "resource://services-settings/IDBHelpers.sys.mjs", 16))

@@ -28,7 +28,7 @@
 		</classes>
 	</test>
 	
-	<!--<test name="Run On EDGE">
+	<!-- <test name="Run On EDGE">
 		<parameter name="browser" value="edge" />
 		<classes>
 			<class name="com.OrangeHRM.admin.Login" />
@@ -36,7 +36,7 @@
 		</classes>
 	</test>
 	
-	 <test name="Run On CHROME_HEADLESS">
+	<test name="Run On CHROME_HEADLESS">
    <parameter name = "browser" value = "chrome_headless"/>
    <classes>
      <class name="com.OrangeHRM.admin.Login"/>

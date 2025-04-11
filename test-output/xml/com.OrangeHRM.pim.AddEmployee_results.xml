@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Run On FIREFOX"
+<testsuite name="Run On CHROME"
            tests="1"
            failures="0"
            errors="0"
            skipped="0"
-           time="7,308">
+           time="7,465">
   <properties />
   
   
-            <testcase name="TC_01_Creat_New_Employee" time="7,308" classname="com.OrangeHRM.pim.AddEmployee" />
+            <testcase name="TC_01_Creat_New_Employee" time="7,465" classname="com.OrangeHRM.pim.AddEmployee" />
       
 </testsuite>

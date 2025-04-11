@@ -10,7 +10,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import commons.GlobalConstants;
+import factoryBrowser.BrowserNotSupportedException;
+import factoryBrowser.ChromeDriverManager;
+import factoryBrowser.EdgeDriverManager;
+import factoryBrowser.FirefoxDriverManager;
+import factoryBrowser.HeadlessChromeDriverManager;
+import factoryBrowser.HeadlessFiefoxDriverManager;
+import factoryBrowser.IEDriverManager;
+import factoryBrowser.SafaryDriverManager;
 import freemarker.core.ReturnInstruction.Return;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class LocalFactory {
 	private WebDriver driver;
@@ -22,42 +31,32 @@ public class LocalFactory {
 	}
 
 	public WebDriver createDriver() {
-		
-		if (browserName.equals("firefox")) {
-			
-			driver = new FirefoxDriver();
-		} else if (browserName.equals("headlessfirefox")) {
-			
-			FirefoxOptions options = new FirefoxOptions();
-			options.addArguments("--headless");
-			options.addArguments("window-size=1920x1080");
-			driver = new FirefoxDriver(options);
-		} else if (browserName.equals("coccoc")) {
-			
-			ChromeOptions options = new ChromeOptions();
-			if (GlobalConstants.OS_NAME.startsWith("Windows")) {
-				options.setBinary("C:\\Program Files\\CocCoc\\Browser\\Application\\browser.exe");
-			} else {
-				options.setBinary(".....");
-			}
-			driver = new ChromeDriver(options);
-		} else if (browserName.equals("chrome")) {
-			
-			driver = new ChromeDriver();
-		} else if (browserName.equals("headlesschrome")) {
-			
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--headless");
-			options.addArguments("window-size=1920x1080");
-			driver = new ChromeDriver(options);
-		
-		} else if (browserName.equals("edge")) {
-			
-			driver = new EdgeDriver();
-		} else {
-			throw new RuntimeException("Browser name invalid !");
+		BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
+		switch(browser) {
+		case FIREFOX:
+			driver = new FirefoxDriverManager().getBrowserDriver();
+			break;
+		case CHROME:
+			driver = new ChromeDriverManager().getBrowserDriver();
+			break;
+		case EDGE:
+			driver = new EdgeDriverManager().getBrowserDriver();
+			break;
+		case IE:
+			driver = new IEDriverManager().getBrowserDriver();
+			break;
+		case CHROME_HEADLESS:
+			driver = new HeadlessChromeDriverManager().getBrowserDriver();
+			break;
+		case FIREFOX_HEADLESS:
+			driver = new HeadlessFiefoxDriverManager().getBrowserDriver();
+			break;
+		case SAFARI:
+			driver = new SafaryDriverManager().getBrowserDriver();
+			break;
+			default:
+				throw new BrowserNotSupportedException(browserName);
 		}
 		return driver;
 	}
-	
 }
