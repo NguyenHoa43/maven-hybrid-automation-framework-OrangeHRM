@@ -2,38 +2,15 @@ package commons;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeDriverService;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxDriverService;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.GeckoDriverService;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariOptions;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
@@ -41,20 +18,18 @@ import org.testng.annotations.BeforeSuite;
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
 
-import factoryEnvironment.BrowserList;
 import factoryEnvironment.BrowserStackFactory;
 import factoryEnvironment.EnvironmentGridList;
 import factoryEnvironment.EnvironmentList;
 import factoryEnvironment.GridFactory;
 import factoryEnvironment.LocalFactory;
 import factoryEnvironment.SaucelabFactory;
-import factoryEnvironment.ServerFactory;
 
 
 
-public class BaseTest {
+public abstract class BaseTest {
 
-	private WebDriver driver;
+	private static ThreadLocal<WebDriver>  driver = new ThreadLocal<WebDriver>();
 	protected final Log log;
 	private Platform platform;
 	
@@ -79,7 +54,7 @@ public class BaseTest {
 			break;
 			
 			default:
-				throw new IllegalArgumentException("Unexpected value: " + enviromentlist);
+				throw new IllegalArgumentException("Unexpected value: " + serverName);
 		}
 		return serverName;
 	}
@@ -90,28 +65,28 @@ public class BaseTest {
 		
 		switch (environment) {
 		case LOCAL: 
-			driver = new LocalFactory(browserName).createDriver();			
+			driver.set(new LocalFactory(browserName).createDriver());			
 		break;
 		case GRID:
-			driver = new GridFactory(browserName, ipAddress, portNumber).createDriver();
+			driver.set(new GridFactory(browserName, ipAddress, portNumber).createDriver());
 		break;
 		case BROWSERSTACK:
-			driver =  new BrowserStackFactory(browserName, osName, osVersion).createDriver();
+			driver.set(new BrowserStackFactory(browserName, osName, osVersion).createDriver());
 		break;
 		case SAUCELAP:
-			driver = new SaucelabFactory(browserName, osName).createDriver();
+			driver.set(new SaucelabFactory(browserName, osName).createDriver());
 		break;
 		default:
-			driver = new LocalFactory(browserName).createDriver();			
+			driver.set(new LocalFactory(browserName).createDriver());			
 			break;
 		}
 		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIME_OUT));
-		driver.manage().window().maximize();
+		driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.getGlobalConstants().getLongTimeout()));
+		driver.get().manage().window().maximize();
 		System.out.println("Server Name: " + serverName);
 		System.out.println("Server url: " + getUrlByServerName(serverName));
-		driver.get(getUrlByServerName(serverName));
-		return driver;
+		driver.get().get(getUrlByServerName(serverName));
+		return driver.get();
 	}
 	
 	protected int fadeNumber() {
@@ -146,7 +121,7 @@ public class BaseTest {
 	}
 	
 	public WebDriver getDriverInstance() {
-		return this.driver;
+		return this.driver.get();
 	}
 		
 	protected boolean verifyTrue(boolean condition) {
@@ -192,7 +167,7 @@ public class BaseTest {
 	}
 	public void deleteAllureReport() {
 		try {
-			String pathFolderDownload = GlobalConstants.PROJECT_PATH +  "/allure-json";
+			String pathFolderDownload = GlobalConstants.getGlobalConstants().getProjectPath() +  "/allure-json";
 			File file = new File(pathFolderDownload);
 			File[] listOfFiles = file.listFiles();
 			if (listOfFiles.length != 0) {
@@ -213,7 +188,7 @@ public class BaseTest {
 			String osName = System.getProperty("os.name").toLowerCase();
 			log.info("OS name = " + osName);
 
-			String driverInstanceName = driver.toString().toLowerCase();
+			String driverInstanceName = driver.get().toString().toLowerCase();
 			log.info("Driver instance name = " + driverInstanceName);
 
 			String browserDriverName = null;
@@ -239,8 +214,10 @@ public class BaseTest {
 			}
 
 			if (driver != null) {
-				driver.manage().deleteAllCookies();
-				driver.quit();
+				driver.get().manage().deleteAllCookies();
+				driver.get().quit();
+				
+				driver.remove();
 			}
 		} catch (Exception e) {
 			log.info(e.getMessage());
@@ -258,7 +235,7 @@ public class BaseTest {
 	
 	public void deleteAllureReport(String folderName) {
 		try {
-			String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-json";
+			String pathFolderDownload = GlobalConstants.getGlobalConstants().getProjectPath() + "/allure-json";
 			File file = new File(pathFolderDownload);
 			File[] listOfFiles = file.listFiles();
 			if (listOfFiles.length != 0) {

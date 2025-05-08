@@ -3,10 +3,7 @@
 	<listeners>
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
 		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
-		<listener class-name="reportConfig.ReportNGListener"/>
 		<listener class-name="reportConfig.AllureTestListener" />
-		<listener class-name="reportConfig.RetryListener"/>
-		
 	</listeners>
 
 	<parameter name="envName" value="local"/>
@@ -16,22 +13,26 @@
 	<test name="Run On FIREFOX">
 		<parameter name="serverName" value="dev"/>
 		<parameter name="browser" value="firefox" />
+		<parameter name="ipAddress" value="localhost" />
+		<parameter name="portNumber" value="4446" />
 		<classes>
 			<class name="com.OrangeHRM.admin.Login" />
 			<class name="com.OrangeHRM.pim.AddEmployee" />
 		</classes>
 	</test>
-
-<!--	<test name="Run On CHROME">
+	
+	 <test name="Run On CHROME">
 	 	<parameter name="serverName" value="test"/>
 		<parameter name="browser" value="chrome" />
+		<parameter name="ipAddress" value="localhost" />
+		<parameter name="portNumber" value="4445" />
 			<classes>
 				<class name="com.OrangeHRM.admin.Login" />
 				<class name="com.OrangeHRM.pim.AddEmployee" />
 		</classes>
 	</test>
 	
-	 <test name="Run On EDGE">
+	<!-- <test name="Run On EDGE">
 		<parameter name="browser" value="edge" />
 		<classes>
 			<class name="com.OrangeHRM.admin.Login" />
@@ -39,7 +40,7 @@
 		</classes>
 	</test>
 	
-	 <test name="Run On CHROME_HEADLESS">
+	<test name="Run On CHROME_HEADLESS">
    <parameter name = "browser" value = "chrome_headless"/>
    <classes>
      <class name="com.OrangeHRM.admin.Login"/>

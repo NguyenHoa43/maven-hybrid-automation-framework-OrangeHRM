@@ -31,7 +31,7 @@ public class EdgeDriverManager implements BrowserFactory{
 		prefss.put("profile.password_manager_enabled", false);
 		prefss.put("autofill.profile_enabled", false);		
 		
-		EdgeDriverService edgeservice = new EdgeDriverService.Builder().withLogFile(new File(GlobalConstants.BROWSER_LOG + "edgeDriver.log")).build();
+		EdgeDriverService edgeservice = new EdgeDriverService.Builder().withLogFile(new File(GlobalConstants.getGlobalConstants().getBrowserLog() + "edgeDriver.log")).build();
 		EdgeOptions edgeOption = new EdgeOptions();
 		edgeOption.addArguments("--disable-notifications");
 		edgeOption.addArguments("--disable-geolocation");

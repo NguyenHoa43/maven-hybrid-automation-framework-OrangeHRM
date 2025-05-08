@@ -33,11 +33,12 @@ public class Login extends BaseTest{
 		userName = "automationdhoa";
 		passWord = "Hoabeo43#";
 		emailAddress = "afc" + fadeNumber() + "@gmail.com";
+		System.out.printf("Luồng: %s - id: %d \n", Thread.currentThread().getName(), Thread.currentThread().getId());
 		
 	}
 
 	
-		@Description("Create New Employee")
+		@Description("Login Page not ID user")
 		@Severity(SeverityLevel.NORMAL)
 		@Test
 		public void TC_01_Login_Page_Not_User() {
@@ -47,7 +48,7 @@ public class Login extends BaseTest{
 			//verifyEquals(loginPage.getTextErrorMessage(driver), "Required");
 			verifyTrue(loginPage.isErrorDisplay(driver));
 		}
-		@Description("Create New Employee")
+		@Description("Login Page not Password")
 		@Severity(SeverityLevel.NORMAL)
 		@Test
 		public void TC_02_Login_Page_Not_Password() {
@@ -57,7 +58,7 @@ public class Login extends BaseTest{
 			loginPage.clickToButtonLogin(driver);
 			verifyEquals(loginPage.getTextErrorMessage(driver), "Required");
 		}
-		@Description("Create New Employee")
+		@Description("Login Page wrong ID User")
 		@Severity(SeverityLevel.NORMAL)
 		@Test
 		public void TC_03_Login_Page_Wrong_User() {
@@ -67,7 +68,7 @@ public class Login extends BaseTest{
 			loginPage.clickToButtonLogin(driver);
 			verifyEquals(loginPage.getTextErrorMessageWrongUser(driver), "Invalid credentials");
 		}
-		@Description("Create New Employee")
+		@Description("Login Page wrong Password")
 		@Severity(SeverityLevel.NORMAL)
 		@Test
 		public void TC_04_Login_Page_Wrong_Password() {
@@ -77,12 +78,13 @@ public class Login extends BaseTest{
 			loginPage.clickToButtonLogin(driver);
 			verifyEquals(loginPage.getTextErrorMessageWrongPassword(driver), "Invalid credentials");
 		}
-		
+		@Description("Login Page with user name and password true")
+		@Severity(SeverityLevel.NORMAL)
 		@Test
 		public void TC_05_Login_Page_Successfull() {
 			loginPage.refreshToPage(driver);
-			loginPage.inputToUserNameTextBox(driver, GlobalConstants.USER_NAME);
-			loginPage.inputToPasswordTextBox(driver, GlobalConstants.PASS_WORD);
+			loginPage.inputToUserNameTextBox(driver, GlobalConstants.getGlobalConstants().getUserName());
+			loginPage.inputToPasswordTextBox(driver, GlobalConstants.getGlobalConstants().getPassWord());
 			loginPage.clickToButtonLogin(driver);
 			
 		}

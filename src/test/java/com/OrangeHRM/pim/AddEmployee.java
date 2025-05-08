@@ -34,6 +34,7 @@ public class AddEmployee extends BaseTest{
 		pimPage = PageGeneratorManager.getAdminPimPage(driver);
 		dashBoardPage = PageGeneratorManager.getAdminDashboardPage(driver);
 		
+		
 		firstName = "Nguyen";
 		middleName = "Duc";
 		lastName = "Tuan";
@@ -42,10 +43,10 @@ public class AddEmployee extends BaseTest{
 		passWord = "HappyDay@12";
 		confirmPassWord = "HappyDay@12";
 		emailAddress = "afc" + fadeNumber() + "@gmail.com";
+		System.out.printf("Luồng: %s - id: %d \n", Thread.currentThread().getName(), Thread.currentThread().getId());
 		
-		
-		loginPage.inputToUserNameTextBox(driver, GlobalConstants.USER_NAME);
-		loginPage.inputToPasswordTextBox(driver, GlobalConstants.PASS_WORD);
+		loginPage.inputToUserNameTextBox(driver, GlobalConstants.getGlobalConstants().getUserName());
+		loginPage.inputToPasswordTextBox(driver, GlobalConstants.getGlobalConstants().getPassWord());
 		loginPage.clickToButtonLogin(driver);
 		pimPage = dashBoardPage.openPimOrangeHRMPage(driver);
 		pimPage.sleep(4);
@@ -53,7 +54,7 @@ public class AddEmployee extends BaseTest{
 		
 	}
 	// setup report allure
-	@Description("Create New Employee")
+	@Description("Create New Employee in Page Pim")
 	@Severity(SeverityLevel.NORMAL)
 	@Test
 	public void TC_01_Creat_New_Employee() {

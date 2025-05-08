@@ -159,6 +159,7 @@ public class BasePage {
 	}
 
 	protected void clickToElement(WebDriver driver, String locatorType) {
+		highlightElement(driver, locatorType);
 		getWebElement(driver, locatorType).click();
 	}
 	protected void clickToElement(WebDriver driver, WebElement element) {
@@ -170,6 +171,7 @@ public class BasePage {
 	}
 
 	protected void sendkeysToElement(WebDriver driver, String locatorType, String textValue) {
+		highlightElement(driver, locatorType);
 		WebElement element = getWebElement(driver, locatorType);
 		element.clear();
 		element.sendKeys(textValue);
@@ -361,14 +363,24 @@ public class BasePage {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		WebElement element = getWebElement(driver, locatorType);
 		String originalStyle = element.getAttribute("style");
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
-				"border: 2px solid red; border-style: dashed;");
+		String hightlightstyle = "border: 2px solid blue; border-style: dashed;";
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", hightlightstyle);
 		sleep(1);
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
-				originalStyle);
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
+	}
+	
+	protected void highlightElementDynamic(WebDriver driver, String locatorType, String... dynamicValues) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		WebElement element = getWebElement(driver, getDynamicXpath(locatorType, dynamicValues));
+		String originalStyle = element.getAttribute("style");
+		String hightlightstyle = "border: 2px solid yellow; border-style: dashed;";
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", hightlightstyle);
+		sleep(1);
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
 	}
 
 	protected void clickToElementByJS(WebDriver driver, String locatorType) {
+		highlightElement(driver, locatorType);
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, locatorType));
 	}
@@ -540,6 +552,6 @@ public class BasePage {
 	
 	
 
-	private long longTimeout = GlobalConstants.LONG_TIME_OUT;
-	private long shortTimeout = GlobalConstants.SHORT_TIMEOUT;
+	private long longTimeout = GlobalConstants.getGlobalConstants().getLongTimeout();
+	private long shortTimeout = GlobalConstants.getGlobalConstants().getShortTimeout();
 }

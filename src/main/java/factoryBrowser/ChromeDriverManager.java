@@ -1,7 +1,7 @@
 package factoryBrowser;
 
-import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
-import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
+
+
 
 import java.io.File;
 import java.util.Collections;
@@ -13,9 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-
 import commons.GlobalConstants;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ChromeDriverManager implements BrowserFactory{
 
@@ -27,12 +25,10 @@ public class ChromeDriverManager implements BrowserFactory{
 		prefs.put("credentials_enable_service", false);
 		prefs.put("profile.password_manager_enabled", false);
 		prefs.put("autofill.profile_enabled", false);
-		if(!IS_OS_WINDOWS) {
-			throw new BrowserNotSupportedException("Chrome is not supported on " + System.getProperty("os.name"));
-		}
+		
 	
 		ChromeOptions options = new ChromeOptions();
-		ChromeDriverService chromeservice = new ChromeDriverService.Builder().withLogFile(new File(GlobalConstants.BROWSER_LOG + "ChromeDriver.log")).build();
+		ChromeDriverService chromeservice = new ChromeDriverService.Builder().withLogFile(new File(GlobalConstants.getGlobalConstants().getBrowserLog() + "ChromeDriver.log")).build();
 		
 		options.addArguments("--disable-notifications");
 		options.addArguments("--disable-geolocation");
